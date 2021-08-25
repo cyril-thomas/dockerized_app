@@ -12,4 +12,4 @@
 * Create a ECR repository
 * Create a builspec.yml for Codebuild to read out of.
 * Setup the codebuild build project.
-* Supply the github
+* Add Container poweruser and fullaccess policies to your codebuild role

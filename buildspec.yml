@@ -28,7 +28,7 @@ phases:
       - echo Writing image definitions file...
       - printf '[{"name":"spring_dockerized_app","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
       - cat imagedefinitions.json
-        #artifacts:
-        #files:
-        #- imagedefinitions.json
-        # - build/dockerized_app.jar
+  artifacts:
+    files:
+      - imagedefinitions.json
+      - build/dockerized_app.jar

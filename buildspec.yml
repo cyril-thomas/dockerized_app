@@ -1,4 +1,4 @@
-version: 2.0
+version: 0.2
 
 phases:
   pre-build:
@@ -7,4 +7,7 @@ phases:
       - ./gradlew clean build
       - echo "Logging into Amazon ECR"
       - aws --version
-  
+      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+      - REPOSITORY_URI=641172032395.dkr.ecr.us-west-2.amazonaws.com/spring_dockerized_app
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')

@@ -7,3 +7,9 @@
 ### Using SpringBoot 
 * Build an image with SpringBoot 2.x feature
  `./gradlew bootBuildImage --imageName spring_docker:v1`
+
+### AWS Codebuild/Codepipeline
+* Create a ECR repository
+* Create a builspec.yml for Codebuild to read out of.
+* Setup the codebuild build project.
+* Supply the github

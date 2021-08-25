@@ -1,0 +1,10 @@
+version: 2.0
+
+phases:
+  pre-build:
+    commands:
+      - echo "Building our spring docker project"
+      - ./gradlew clean build
+      - echo "Logging into Amazon ECR"
+      - aws --version
+  

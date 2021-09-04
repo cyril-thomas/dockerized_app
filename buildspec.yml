@@ -4,7 +4,7 @@ phases:
   pre_build:
     commands:
       - echo "Building our spring docker project"
-      - ./gradlew clean build
+      - ./gradlew clean bootBuildImage
       - echo "Logging into Amazon ECR" - aws --version
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
       - REPOSITORY_URI=641172032395.dkr.ecr.us-west-2.amazonaws.com/spring_dockerized_app
@@ -17,13 +17,11 @@ phases:
       - echo Build started on `date`
       - echo Building the Docker image...
       - docker login --username cyrilthomas --password netbeans1$  
-      - ./gradlew bootBuildImage --imageName $REPOSITORY_URI:$IMAGE_TAG
-      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+      - docker tag docker.io/library/dockerized_app:0.0.1-SNAPSHOT $REPOSITORY_URI:$IMAGE_TAG
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
-      - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - echo Writing image definitions file...
       - printf '[{"name":"spring_dockerized_app","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json

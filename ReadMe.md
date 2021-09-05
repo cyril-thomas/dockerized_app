@@ -13,3 +13,7 @@
 * Create a builspec.yml for Codebuild to read out of.
 * Setup the codebuild build project.
 * Add Container poweruser and fullaccess policies to your codebuild role
+* Add a task definition under the ECS Tasks Definitions. 
+** Add a security group and the container.
+* Add an ECS cluster, and add your task under run tasks.
+

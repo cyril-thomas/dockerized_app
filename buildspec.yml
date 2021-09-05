@@ -16,7 +16,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker login --username cyrilthomas --password netbeans1$
+      - docker login --username cyrilthomas --password $
       - docker build --platform=linux/amd64 -t $REPOSITORY_URI:latest .
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
   post_build:
